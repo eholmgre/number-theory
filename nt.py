@@ -46,7 +46,8 @@ def multOrders(mod, prnt=False):
     # orders of elements in the group (Z/mod)*
     elems = []
     pairs = []
-    for pe in range(1, mod - 1):
+    elems.append(1)
+    for pe in range(2, mod - 1):
         if mod % pe != 0:
             elems.append(pe)
     ords = possibleOrders(mod - 1)
@@ -77,3 +78,13 @@ def addOrders(mod, prnt=False):
     if prnt:
         print(f'in Z/{mod}')
     return pairs
+
+
+def quadraticResidues(p):
+    return sorted(set([a ** 2 % p for a in range(1, p - 1) if a % p != 0]))
+
+
+def squares(p):
+    es = [e for e in range(1, p)]
+    sqs = [a ** 2 % p for a in range(1, p)]
+    return list(zip(es, sqs))
